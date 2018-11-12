@@ -1,0 +1,23 @@
+{
+  "name": "node-notes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevingreenb/node.git"
+  },
+  "author": "Kevin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevingreenb/node/issues"
+  },
+  "homepage": "https://github.com/kevingreenb/node#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "nodemon": "^1.18.6"
+  }
+}
