@@ -2,25 +2,32 @@ console.log('App is running!');
 
 const fs = require('fs');
 const _ = require('lodash');
+const yargs = require('yargs');
 
 const notes = require('./notes.js');
 
-//To access arguments from CMD
-var command = process.argv[2];
+const argv = yargs.argv;
+//Get command arguments from CMD
+var command = argv._[0]
+
 
 if (command === 'add') {
-	console.log('Adding new note');
+	var note = notes.addNote(argv.title, argv.body);
+	if (note)
+		console.log('Note added successfully =');
+	else 
+		console.log('Title already exists');
 } 
 
 else if (command === 'list') {
-	console.log('Listing all notes');
+	notes.getAll();
 }
 else if (command ==='read'){
-	console.log('Fetching the note');
+	notes.getNote(argv.title);
 }
 
 else if (command ==='remove'){
-	console.log('Removing the note')
+	notes.removeNote(argv.title);
 }
 else {
 	console.log('Command note recognized');
