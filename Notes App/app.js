@@ -14,7 +14,7 @@ var command = argv._[0]
 if (command === 'add') {
 	var note = notes.addNote(argv.title, argv.body);
 	if (note)
-		console.log('Note added successfully =');
+		console.log('Note added successfully');
 	else 
 		console.log('Title already exists');
 } 
@@ -27,7 +27,9 @@ else if (command ==='read'){
 }
 
 else if (command ==='remove'){
-	notes.removeNote(argv.title);
+	var wasNoteRemoved = notes.removeNote(argv.title);
+	var message = wasNoteRemoved ? 'Note was removed' : 'Noted was not found'
+	console.log(message);
 }
 else {
 	console.log('Command note recognized');

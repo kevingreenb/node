@@ -2,21 +2,23 @@ console.log("Starting Nodes.js");
 
 const fs = require("fs");
 
+//gets existing notes as an object
 var fetchNotes = () => {
 	try {
-		var notesString = fs.readFileSync("notes-data.json");
+		var notesString = fs.readFileSync("notes-data.json");//reads only if exists
 		return JSON.parse(notesString); //Converts to object
 	} catch (e) {
 		return [];
 	}	
 };
 
+//saves note to file
 var saveNotes = (notes) => {
-	fs.writeFileSync("notes-data.json", JSON.stringify(notes));
+	fs.writeFileSync("notes-data.json", JSON.stringify(notes));//writes to file
 };
 
 var addNote = (title, body) => {
-	var notes = fetchNotes();
+	var notes = fetchNotes();//gets existing notes
 	var note = {
 		title,
 		body
@@ -27,7 +29,7 @@ var addNote = (title, body) => {
 	//Check for duplicates before doing this
 	if (duplicateNotes.length === 0){
 	notes.push(note); //Pushes new note into array of existing objects
-	saveNotes(notes);
+	saveNotes(notes);//saves array into file
 	return note;
 	}
 };
@@ -41,7 +43,11 @@ var getNote = title => {
 };
 
 var removeNote = title => {
-	console.log("Removing", title);
+	var notes = fetchNotes();
+	var filterNotes = notes.filter((note) => note.title !== title);//It returns all the items that do not equals title
+	saveNotes(filterNotes);
+
+	return notes.length !== filterNotes.length
 };
 
 module.exports = {
